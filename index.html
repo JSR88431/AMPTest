@@ -15,6 +15,7 @@
   <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
   <!-- <script async custom-element="amp-image-slider" src="https://cdn.ampproject.org/v0/amp-image-slider-0.1.js"></script> -->
   <script async custom-element="amp-lightbox-gallery" src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"></script>
+  <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -1021,6 +1022,7 @@ span {
 @media (max-width: 768px) {
   .back-to-top {
     bottom: 15px;
+    opacity: 0.5;
   }
 }
 
@@ -1047,6 +1049,7 @@ span {
   height: 48px;
   z-index: 10;
   transition: all 0.5s ease;
+  box-shadow: 0 4px 2px -2px lightgray;
 }
 
 #header #logo {
@@ -1258,13 +1261,32 @@ span {
 #nav-menu-container {
   float: right;
   margin: 0 0 0 0;
+  
 }
+
+.hamburger{
+   display: none;
+   background-color: white;
+   border-style:none;
+  }
 
 @media (max-width: 1024px) {
   #nav-menu-container {
     display: none;
   }
+
+  .hamburger{
+   display:block;
+   float:right;
+   margin-top:10px;
+   margin-right:10px;
+  }
+
+  
 }
+
+
+
 
 /* Nav Meu Styling */
 .nav-menu a {
@@ -2294,6 +2316,37 @@ amp-carousel > span {
   animation-name: fadeInUp;
 }
 
+.sidebar{
+  text-decoration: none;
+}
+
+.hamburger{
+  position:relative;
+  
+ 
+}
+
+@media (max-width: 640px) {
+  .hamburger{
+  display:block;
+ }
+  
+}
+#sidebar1{
+  background-color: #3e3e3e;
+}
+
+.sidebar{
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+}
+
+ul.sidebar > li > a{
+  color: white;
+}
+
+
 
 
   </style>
@@ -2338,7 +2391,25 @@ amp-carousel > span {
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
+    <button role="button" on="tap:sidebar1.toggle" tabindex="0" class="hamburger">☰</button>
   </header><!-- #header -->
+
+  <amp-sidebar id="sidebar1" layout="nodisplay" side="left">
+    <div role="button" aria-label="close sidebar" on="tap:sidebar1.toggle" tabindex="0" class="close-sidebar">✕</div>
+    <ul class="sidebar mobile-nav">
+        <li class="menu-active"><a href="#hero">Home</a></li>
+        <li><a href="#about-us">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li class="menu-has-children"><a href="">Drop Down ↓ </a>
+        </li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+  </amp-sidebar>
+
 
   <!--==========================
     Hero Section
@@ -2347,7 +2418,8 @@ amp-carousel > span {
     <div class="hero-container">
       <h1>Welcome to eStartups</h1>
       <h2>Elegant Bootstrap Template for Startups, Apps &amp; more...</h2>
-      <amp-img src="img/hero-img.png" width="768" height="398" alt="Hero Imgs"></amp-img>
+      <amp-img src="img/hero-img.png" width="768" height="398" srcset="img/hero-img.png 768w,
+      img/hero-img.png 320w" sizes="(min-width: 720px) 48vw, 100vw" alt="Hero Imgs"></amp-img>
       <a href="#get-started" class="btn-get-started scrollto">Get Started</a>
       <div class="btns">
         <a href="#"><i class="fa fa-apple fa-3x"></i> App Store</a>
@@ -2549,7 +2621,7 @@ amp-carousel > span {
         <amp-img src="img/screen/2.jpg" width="255" height="453.23" alt="img"></amp-img>
         <amp-img src="img/screen/3.jpg" width="255" height="453.23" alt="img"></amp-img>
         <amp-img src="img/screen/4.jpg" width="255" height="453.23" alt="img"></amp-img>
-      
+
         <amp-img src="img/screen/5.jpg" width="255" height="453.23" alt="img"></amp-img>
         <amp-img src="img/screen/6.jpg" width="255" height="453.23" alt="img"></amp-img>
         <amp-img src="img/screen/7.jpg" width="255" height="453.23" alt="img"></amp-img>
@@ -3104,9 +3176,8 @@ amp-carousel > span {
 
   </footer>
 
+  <button class="backTop"><a href="#" class="back-to-top" style="display:inline;">^</a></button>
 
-
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
   <!-- Template Main Javascript File -->
   <!-- <script src="js/main.js"></script> -->
